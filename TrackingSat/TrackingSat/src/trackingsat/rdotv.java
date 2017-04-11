@@ -4,7 +4,7 @@ public class rdotv
 {
 	private static double m0,m1,m2,m3,m6;
 	
-	public double eval(trackingsat.Measurement m, double r, double v)
+	public static double eval(Measurement m, double r, double v)
 	{
 		m0=m.m0;
 		m1=m.m1;
@@ -665,7 +665,7 @@ public class rdotv
 				         (945.*Measurement.power(2,0.3333333333333333)*(2 - 2*m0 - 3*Measurement.power(r,3) + 3*m0*Measurement.power(r,3) + Measurement.power(r,5))))))/2.;
 	}
 
-	private double Sqrt(double d)
+	private static double Sqrt(double d)
 	{
 		return Math.sqrt(d);
 	}

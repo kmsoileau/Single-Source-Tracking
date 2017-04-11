@@ -4,7 +4,7 @@ public class vdotT
 {
 	private static double m0,m2;
 	
-	public double eval(trackingsat.Measurement m, double r, double rdotv, double v)
+	public static double eval(trackingsat.Measurement m, double r, double rdotv, double v)
 	{
 		m0=m.m0;
 		m2=m.m2;
