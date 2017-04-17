@@ -8,8 +8,8 @@ public class vdotT
 	{
 		m0=m.m0;
 		m2=m.m2;
-		return (1 - Measurement.power(r,2) + Measurement.power(r,5) - m0*(1 + Measurement.power(r,3)) 
-				+ Measurement.power(r,3)*(1 - m2 + 2*Measurement.power(v,2)))/(4.*Measurement.power(r,3));
+		return (1 - Measurement.Power(r,2) + Measurement.Power(r,5) - m0*(1 + Measurement.Power(r,3)) 
+				+ Measurement.Power(r,3)*(1 - m2 + 2*Measurement.Power(v,2)))/(4.*Measurement.Power(r,3));
 	}
 }
 

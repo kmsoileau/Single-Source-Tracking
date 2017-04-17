@@ -1,47 +1,36 @@
 package trackingsat;
 
+import java.util.ArrayList;
+
 class Package
 {
 	double rdR;
 	double rdT;
-	double rdotv;
+	ArrayList<Double> rdotv;
 	double vdR;
 	double vdT;
 	double vdv;
 	
 	public String toString()
 	{
-		return "Package [rdR=" + rdR + ", rdT=" + rdT + ", rdotv=" + rdotv
-				+ ", vdR=" + vdR + ", vdT=" + vdT + ", vdv=" + vdv + "]";
+		return "rdR=" + rdR + "\nrdT=" + rdT + "\nrdotv=" + rdotv
+				+ "\nvdR=" + vdR + "\nvdT=" + vdT + "\nvdv=" + vdv;
 	}
 }
 
 public class test
 {
-	public static Package doit(Vector rv,Vector vv,Vector Ru,Vector Tu,Vector Hu,Measurement meas)
-	{
-		Package ret=new Package();
-		ret.rdotv=rv.dot(vv);
-		double r=rv.norm();
-		double v=vv.norm();
-		ret.rdR=rdotR.eval(meas, r);
-		ret.rdT=rdotT.eval(meas,r,ret.rdotv);
-		ret.vdR=vdotR.eval(meas, r, ret.rdotv);
-		ret.vdT=vdotT.eval(meas, r, ret.rdotv,v);
-		ret.vdv=vdotv.eval(meas, r, ret.rdotv);
-		
-		return ret;
-	}
-	
 	public static Package doit(double r,double v,Vector Ru,Vector Tu,Vector Hu,Measurement meas)
 	{
 		Package ret=new Package();
+		trackingsat.rdotv.init(meas);
 		ret.rdotv=trackingsat.rdotv.eval(meas, r, v);
-		ret.rdR=rdotR.eval(meas, r);
-		ret.rdT=rdotT.eval(meas,r,ret.rdotv);
-		ret.vdR=vdotR.eval(meas, r, ret.rdotv);
-		ret.vdT=vdotT.eval(meas, r, ret.rdotv,v);
-		ret.vdv=vdotv.eval(meas, r, ret.rdotv);
+		ret.rdR=trackingsat.rdotR.eval(meas, r);
+		System.out.println("Predicted rdotv:"+ret.rdotv);
+		//ret.rdT=trackingsat.rdotT.eval(meas,r,ret.rdotv);
+		//ret.vdR=trackingsat.vdotR.eval(meas, r, ret.rdotv);
+		//ret.vdT=trackingsat.vdotT.eval(meas, r, ret.rdotv,v);
+		//ret.vdv=trackingsat.vdotv.eval(meas, r, ret.rdotv);
 		
 		return ret;
 	}
@@ -57,6 +46,14 @@ public class test
 		System.out.println("meas="+meas);
 		
 		Package dt=doit(rv.norm(),vv.norm(),Ru,Tu,Hu,meas);
+		double rdRa=rv.dot(Ru);
+		double rdTa=rv.dot(Tu);
+		double rdotva=rv.dot(vv);
+		double vdRa=vv.dot(Ru);
+		double vdTa=vv.dot(Tu);
+		double vdva=vv.dot(vv);
 		System.out.println(dt);
+		System.out.println(rdRa+","+rdTa+","+rdotva+","+vdRa+","+vdTa+","+vdva);
+		System.out.println("Actual rdotv:"+rdotva);
 	}
 }

@@ -7,7 +7,7 @@ public class rdotR
 	public static double eval(Measurement m, double r)
 	{
 		m0=m.m0;
-		return (1 - m0 + Measurement.power(r,2))/2.;
+		return (1 - m0 + Measurement.Power(r,2))/2.;
 	}
 }
 
